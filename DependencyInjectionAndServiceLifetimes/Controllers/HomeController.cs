@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Text;
 using DependencyInjectionAndServiceLifetimes.Interfaces;
+using DependencyInjectionAndServiceLifetimes.Services;
 
 namespace DependencyInjectionAndServiceLifetimes.Controllers
 {
@@ -22,6 +23,16 @@ namespace DependencyInjectionAndServiceLifetimes.Controllers
             IExampleSingletonService exampleSingletonService1,
             IExampleSingletonService exampleSingletonService2)
         {
+
+            //    //Without using DI
+            //    ExampleTransientService sampleTransient = new ExampleTransientService();
+            //    ExampleScopedService sampleScoped = new ExampleScopedService();
+            //    ExampleSingletonService exampleScoped = new ExampleSingletonService();
+            //    _exampleTransientService1 = sampleTransient.GetGuid();
+            //    _exampleScopedService1 = exampleScopedService1;
+            //    _exampleSingletonService1 = exampleSingletonService1;
+
+            //Using DI
             _exampleTransientService1 = exampleTransientService1;
             _exampleTransientService2 = exampleTransientService2;
 
@@ -31,8 +42,7 @@ namespace DependencyInjectionAndServiceLifetimes.Controllers
             _exampleSingletonService1 = exampleSingletonService1;
             _exampleSingletonService2 = exampleSingletonService2;
         }
-
-        public IActionResult Index()
+        public IActionResult Index1()
         {
             var exampleTransientServiceGuid1 = _exampleTransientService1.GetGuid();
             var exampleTransientServiceGuid2 = _exampleTransientService2.GetGuid();
